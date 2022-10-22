@@ -11,16 +11,16 @@ import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.Database
 
 fun main() {
-    /*val config = HikariConfig("hikari.properties")
+    val config = HikariConfig("hikari.properties")
     val dataSource = HikariDataSource(config)
-    Database.connect(dataSource)*/
+    Database.connect(dataSource)
 
     embeddedServer(Netty, port = System.getenv("PORT").toInt()) {//
-       /* configureSecurity()
-        configureSerialization()*/
+        configureSecurity()
+        configureSerialization()
         configureRouting()
-     /*   configureAuthRouting()
+        configureAuthRouting()
         configureLoginRouting()
-        configureRegisterRouting()*/
+        configureRegisterRouting()
     }.start(wait = true)
 }
