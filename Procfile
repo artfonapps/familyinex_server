@@ -1,0 +1,1 @@
+web: ./build/install/ru.artfonapps.familyinex-backend/bin/ru.artfonapps.familyinex-backend
