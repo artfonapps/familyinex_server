@@ -9,14 +9,13 @@ import com.artfonapps.plugins.*
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.Database
-import org.koin.ktor.plugin.Koin
 
 fun main() {
     /*val config = HikariConfig("hikari.properties")
     val dataSource = HikariDataSource(config)
     Database.connect(dataSource)*/
 
-    embeddedServer(Netty, port = System.getenv("PORT").toInt()) {
+    embeddedServer(Netty, port = System.getenv("PORT").toInt()) {//
        /* configureSecurity()
         configureSerialization()*/
         configureRouting()
