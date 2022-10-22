@@ -1,1 +1,1 @@
-rootProject.name = "Familyinex_Server"
+rootProject.name = "ru.artfonapps.familyinex-backend"
