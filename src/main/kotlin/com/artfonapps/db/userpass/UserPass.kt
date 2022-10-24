@@ -25,7 +25,7 @@ object UserPass: Table("userspass") {
 
     fun checkIfPassIsValid(login: String, passwordHash: String): Boolean {
         return try {
-            val userModel = UserPass.select { UserPass.login.eq(login) }.single()
+            val userModel  = transaction { UserPass.select { UserPass.login.eq(login) }.single() }
             return userModel[UserPass.passwordHash] == passwordHash
         } catch (e: Exception) {
             false
@@ -34,7 +34,7 @@ object UserPass: Table("userspass") {
 
     fun fetchUserSalt(login: String): String? {
         return try {
-            val userModel = UserPass.select { UserPass.login.eq(login) }.single()
+            val userModel = transaction { UserPass.select { UserPass.login.eq(login) }.single() }
             userModel[salt]
         } catch (e: Exception) {
             null

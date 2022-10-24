@@ -23,7 +23,7 @@ object UserToken : Table("usertokens") {
 
     fun checkIfTokenIsValid(token: String): Boolean {
         return try {
-            UserToken.select { UserToken.token.eq(token) }.single()
+            transaction { UserToken.select { UserToken.token.eq(token) }.single() }
             true
         } catch (e: Exception) {
             false

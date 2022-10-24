@@ -27,7 +27,7 @@ object UserSession : Table("usersessions") {
 
     fun fetchSession(id: String): String? {
         return try {
-            val session = UserSession.select { UserSession.id.eq(id) }.single()
+            val session = transaction { UserSession.select { UserSession.id.eq(id) }.single() }
             session[login]
         } catch (e: Exception) {
             null
@@ -35,6 +35,6 @@ object UserSession : Table("usersessions") {
     }
 
     fun deleteSession(id: String) {
-        UserSession.deleteWhere { UserSession.id.eq(id) }
+        transaction { UserSession.deleteWhere { UserSession.id.eq(id) } }
     }
 }
