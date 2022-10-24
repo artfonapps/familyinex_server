@@ -27,7 +27,8 @@ object UserSession : Table("usersessions") {
 
     fun fetchSession(id: String): String? {
         return try {
-            UserSession.select { UserSession.id.eq(id) }.firstOrNull()?.get(login)
+            val session = UserSession.select { UserSession.id.eq(id) }.single()
+            session[login]
         } catch (e: Exception) {
             null
         }
