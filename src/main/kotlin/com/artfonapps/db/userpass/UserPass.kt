@@ -25,7 +25,7 @@ object UserPass: Table("userspass") {
 
     fun checkIfPassIsValid(login: String, passwordHash: String): Boolean {
         return try {
-            val userModel = UserPass.select { UserPass.login.eq(login) }.single()
+            val userModel = UserPass.select { UserPass.login.eq(login) }.firstOrNull() ?: return false
             return userModel[UserPass.passwordHash] == passwordHash
         } catch (e: Exception) {
             false
