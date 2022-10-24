@@ -19,7 +19,11 @@ class RegisterController(private val call: ApplicationCall) {
             try {
                 call.respond(
                     RepositoryModule.getUserRepository()
-                        .login(sessionId = receive.authSessionId, passwordHash = receive.passwordHash)
+                        .register(
+                            sessionId = receive.authSessionId,
+                            passwordHash = receive.passwordHash,
+                            salt = receive.salt
+                        )
                 )
             } catch (e: BaseDataException) {
                 call.respond(HttpStatusCode.Unauthorized, e.message)
